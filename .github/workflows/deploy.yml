@@ -33,9 +33,12 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          NEXT_PUBLIC_BASE_PATH: /ImageEditor
 
-      - name: Create .nojekyll file
-        run: touch out/.nojekyll
+      - name: Copy static files
+        run: |
+          cp -r public/* out/
+          touch out/.nojekyll
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

@@ -14,9 +14,11 @@ const nextConfig = {
   assetPrefix: process.env.NODE_ENV === 'production' ? '/ImageEditor/' : '',
   // Ensure trailing slash for GitHub Pages compatibility
   trailingSlash: true,
-  // Disable server-side features since we're doing static export
+  // Configure PWA icons and manifest
   experimental: {
-    appDir: true,
+    // Remove appDir since it's now default in Next.js 14
+    optimizeCss: true,
+    webVitalsAttribution: ['CLS', 'LCP']
   }
 };
 
