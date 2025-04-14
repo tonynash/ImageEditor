@@ -12,6 +12,12 @@ const nextConfig = {
   images: { unoptimized: true },
   basePath: process.env.NODE_ENV === 'production' ? '/ImageEditor' : '',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/ImageEditor/' : '',
+  // Ensure trailing slash for GitHub Pages compatibility
+  trailingSlash: true,
+  // Disable server-side features since we're doing static export
+  experimental: {
+    appDir: true,
+  }
 };
 
 module.exports = withPWA(nextConfig); 

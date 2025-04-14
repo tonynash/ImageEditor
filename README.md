@@ -1,55 +1,36 @@
 # Image Editor PWA
 
-A modern, responsive Progressive Web App for image editing built with Next.js, Fabric.js, and Tailwind CSS.
+A Progressive Web App for editing images using fabric.js and Next.js.
 
 ## Features
 
-- **Modern UI**: Clean, intuitive interface with a responsive design
-- **Image Editing Tools**: Draw, add text, add shapes, and manipulate objects
-- **PWA Capabilities**: Works offline and can be installed on devices
-- **Export Options**: Save your creations to your device
+- Image upload and basic editing
+- Progressive Web App (PWA) support
+- Responsive design
+- GitHub Pages deployment
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v14.0.0 or later)
-- npm (v6.0.0 or later)
-
-### Installation
-
-1. Clone this repository
-   ```bash
-   git clone https://github.com/yourusername/image-editor-pwa.git
-   cd image-editor-pwa
-   ```
-
-2. Install dependencies
-   ```bash
-   npm install
-   ```
-
-3. Run the development server
-   ```bash
-   npm run dev
-   ```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-### Building for Production
+## Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
 npm run build
-npm start
 ```
 
-## Technology Stack
+## Deployment
 
-- **Next.js** - React framework for production
-- **Fabric.js** - HTML5 canvas library for the image editor
-- **Tailwind CSS** - Utility-first CSS framework
-- **TypeScript** - Type-safe JavaScript
-- **next-pwa** - PWA plugin for Next.js
+This app is automatically deployed to GitHub Pages using GitHub Actions. The deployment process:
+
+1. Builds the Next.js app with static export
+2. Creates necessary files for GitHub Pages
+3. Deploys to the gh-pages branch
+
+You can access the deployed app at: https://tonynash.github.io/ImageEditor/
 
 ## License
 
