@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate PWA Icons</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .canvas-container {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      margin: 10px;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    h2 {
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+    .instructions {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>PWA Icon Generator</h1>
+  
+  <div class="instructions">
+    <p>This page generates icon images for your PWA. Click the buttons below to download each size.</p>
+    <p>After downloading, place the files in your <code>public/icons/</code> directory.</p>
+  </div>
+  
+  <h2>Icon 192x192</h2>
+  <div class="canvas-container">
+    <canvas id="canvas192" width="192" height="192"></canvas>
+    <div>
+      <button onclick="downloadIcon(192)">Download 192x192 Icon</button>
+    </div>
+  </div>
+  
+  <h2>Icon 512x512</h2>
+  <div class="canvas-container">
+    <canvas id="canvas512" width="512" height="512"></canvas>
+    <div>
+      <button onclick="downloadIcon(512)">Download 512x512 Icon</button>
+    </div>
+  </div>
+  
+  <h2>Apple Icon</h2>
+  <div class="canvas-container">
+    <canvas id="canvasApple" width="180" height="180"></canvas>
+    <div>
+      <button onclick="downloadAppleIcon()">Download Apple Icon</button>
+    </div>
+  </div>
+
+  <script>
+    // Draw icon on canvas
+    function drawIcon(canvasId, size) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext('2d');
+      
+      // Background
+      ctx.fillStyle = '#3b82f6';
+      ctx.fillRect(0, 0, size, size);
+      
+      // Center circle
+      ctx.fillStyle = 'white';
+      ctx.beginPath();
+      ctx.arc(size/2, size/2, size/3, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Text "IE" (Image Editor)
+      ctx.fillStyle = '#3b82f6';
+      ctx.font = `bold ${size/4}px Arial, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('IE', size/2, size/2);
+    }
+    
+    // Download icon
+    function downloadIcon(size) {
+      const canvas = document.getElementById(`canvas${size}`);
+      const link = document.createElement('a');
+      link.download = `icon-${size}x${size}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+    
+    // Download Apple icon
+    function downloadAppleIcon() {
+      const canvas = document.getElementById('canvasApple');
+      const link = document.createElement('a');
+      link.download = 'apple-icon.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+    
+    // Initialize canvases
+    window.onload = function() {
+      drawIcon('canvas192', 192);
+      drawIcon('canvas512', 512);
+      drawIcon('canvasApple', 180);
+    };
+  </script>
+</body>
+</html> 
