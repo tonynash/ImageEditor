@@ -179,6 +179,11 @@ export default function ImageEditor() {
       objects.forEach(obj => canvas.remove(obj));
       canvas.discardActiveObject();
       canvas.renderAll();
+      
+      // Check if canvas is empty
+      if (canvas.getObjects().length === 0) {
+        setImageLoaded(false);
+      }
     }
   };
 
@@ -318,18 +323,34 @@ export default function ImageEditor() {
         </div>
         
         <div className="flex flex-wrap justify-center gap-2">
-          <button 
-            className="btn btn-secondary text-sm px-3"
-            onClick={() => exportCanvas()}
-          >
-            Export
-          </button>
-          <button 
-            className="btn btn-secondary text-sm px-3"
-            onClick={deleteSelected}
-          >
-            Delete Selected
-          </button>
+          {imageLoaded ? (
+            <>
+              <button 
+                className="btn btn-secondary text-sm px-3"
+                onClick={() => exportCanvas()}
+              >
+                Export
+              </button>
+              <button 
+                className="btn btn-secondary text-sm px-3"
+                onClick={deleteSelected}
+              >
+                Delete Selected
+              </button>
+            </>
+          ) : (
+            <label className="btn btn-primary text-sm px-3 cursor-pointer">
+              Import
+              <input 
+                type="file" 
+                accept="image/*" 
+                className="hidden" 
+                onChange={handleFileUpload}
+                title="Import image"
+                aria-label="Import image"
+              />
+            </label>
+          )}
         </div>
       </div>
       
