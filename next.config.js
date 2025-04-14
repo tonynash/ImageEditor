@@ -16,8 +16,7 @@ const nextConfig = {
   trailingSlash: true,
   // Configure PWA icons and manifest
   experimental: {
-    // Remove appDir since it's now default in Next.js 14
-    optimizeCss: true,
+    // Only include necessary experimental features
     webVitalsAttribution: ['CLS', 'LCP']
   }
 };
