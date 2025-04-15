@@ -1,15 +1,18 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import ServiceWorkerRegistration from "./components/ServiceWorkerRegistration";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const basePath = process.env.NODE_ENV === 'production' ? '/ImageEditor' : '';
 
 export const metadata: Metadata = {
   title: "Image Editor PWA",
   description: "A modern, responsive image editor progressive web app",
-  manifest: "/manifest.json",
+  manifest: `${basePath}/manifest.json`,
   icons: {
-    apple: "/icons/apple-icon.png",
+    apple: `${basePath}/icons/apple-icon.png`,
   },
 };
 
@@ -37,10 +40,13 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-TileColor" content="#3b82f6" />
         <meta name="msapplication-tap-highlight" content="no" />
+        <link rel="manifest" href={`${basePath}/manifest.json`} />
+        <link rel="apple-touch-icon" href={`${basePath}/icons/apple-icon.png`} />
       </head>
       <body className={inter.className}>
         <div className="min-h-screen bg-gray-50">
           {children}
+          <ServiceWorkerRegistration />
         </div>
       </body>
     </html>
