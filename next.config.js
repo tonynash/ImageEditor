@@ -2,12 +2,15 @@ const withPWA = require("next-pwa")({
   dest: "public",
   register: true,
   skipWaiting: true,
-  disable: false, // Enable PWA in all environments
+  disable: process.env.NODE_ENV === "development", // Only disable in development
   buildExcludes: [/middleware-manifest\.json$/],
-  publicExcludes: ['!**/*'],
+  publicExcludes: [],
   fallbacks: {
     document: '/ImageEditor/_offline'
-  }
+  },
+  // Ensure service worker is properly scoped
+  scope: '/ImageEditor/',
+  sw: '/ImageEditor/sw.js'
 });
 
 /** @type {import('next').NextConfig} */
